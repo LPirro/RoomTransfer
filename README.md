@@ -1,7 +1,7 @@
 
 # RoomTransfer
 RoomTransfer is a small app made for WeTransfer that shows modern Android development: with Hilt, Coroutines, Flow, Jetpack with the new Material Design 3 guidelines.
-![Logo](https://i.ibb.co/PxKNq74/room-transfer.png)
+![Logo](https://i.ibb.co/q0NXFRb/room-transfer.png)
 ## Tech stack
 - Minimum SDK 23
 - 100% Kotlin
