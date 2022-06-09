@@ -37,8 +37,8 @@ class HomeViewModel @Inject constructor(
 
     override fun getRooms() = viewModelScope.launch {
         try {
-            getRoomsUseCase().collect { game ->
-                _homeScreen.value = HomeUiState.Success(game)
+            getRoomsUseCase().collect { room ->
+                _homeScreen.value = HomeUiState.Success(room)
             }
         } catch (e: Exception) {
             _homeScreen.value = HomeUiState.Error

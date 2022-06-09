@@ -43,7 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.errorView.retryClickListener = { viewModel.retry() }
     }
 
-    private fun updateUi(uiState: HomeUiState) {
+    private fun onUiUpdate(uiState: HomeUiState) {
         resetViews()
         when (uiState) {
             HomeUiState.Error -> binding.errorView.show()
@@ -85,7 +85,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun registerObservers() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch { viewModel.homeScreen.collect { updateUi(it) } }
+                launch { viewModel.homeScreen.collect { onUiUpdate(it) } }
                 launch { viewModel.events.collect { onEvent(it) } }
             }
         }
