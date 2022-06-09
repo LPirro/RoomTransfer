@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">RoomTransfer</string>
+
+    <!-- Home Screen -->
+    <string name="book_room_button">Book Room</string>
+    <string name="room_image_content_description">Room Image</string>
+    <string name="one_spot_available">1 spot available</string>
+    <string name="no_spots_available">no spots available</string>
+    <string name="n_spots_available">%1$d spots available</string>
+    <string name="booking_room_error">Unable to book this room. Check your network connection and try again</string>
+    <string name="booking_room_success">Room booked successfully</string>
+
+    <!-- Error View -->
+    <string name="generic_error">Ooopps! Something went wrong, please try again or contact support (not me)</string>
+    <string name="try_again">Try Again</string>
+    <string name="error_view_icon_content_description">Error Icon</string>
+
+</resources>

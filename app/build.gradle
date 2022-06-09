@@ -1,0 +1,98 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id "org.jlleitschuh.gradle.ktlint" version "10.2.0"
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+apply from: "$rootDir/dependencies.gradle"
+
+android {
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+    compileSdk versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.lpirro.roomtransfer"
+        minSdk versions.minSdk
+        targetSdk versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    // Material Design
+    implementation "com.google.android.material:material:$versions.material"
+
+    // AndroidX
+    implementation "androidx.core:core-ktx:$versions.coreKtx"
+    implementation "androidx.appcompat:appcompat:$versions.appCompat"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+
+
+    // Jetpack Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+
+    // JUnit
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidJunitExt"
+
+    // Robolectric
+    testImplementation "org.robolectric:robolectric:$versions.robolectric"
+
+    // Mockito
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$versions.mockitoKotlin"
+    testImplementation "org.mockito:mockito-inline:$versions.mockitoInline"
+
+    // Hilt - DI
+    implementation "com.google.dagger:hilt-android:$versions.hilt"
+    kapt "com.google.dagger:hilt-compiler:$versions.hilt"
+    testImplementation"com.google.dagger:hilt-android-testing:$versions.hilt"
+    kaptTest "com.google.dagger:hilt-android-compiler:$versions.hilt"
+    testAnnotationProcessor "com.google.dagger:hilt-android-compiler:$versions.hilt"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
+    testImplementation "app.cash.turbine:turbine:$versions.turbine"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okHttp"
+    implementation "com.squareup.okhttp3:okhttp:$versions.okHttp"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
+
+    // Room
+    implementation "androidx.room:room-ktx:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+    androidTestImplementation "androidx.room:room-testing:$versions.room"
+}
