@@ -7,6 +7,7 @@ RoomTransfer is a small app made for WeTransfer that shows modern Android develo
 - 100% Kotlin
 - [Material Design 3](https://m3.material.io)
 - Offline Support with Room
+- Portrait and Landscape support
 - Dark/Light mode support
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous operations
 - [HILT](https://developer.android.com/training/dependency-injection/hilt-android) for Dependency Injection

@@ -73,7 +73,6 @@ class RoomAdapter(
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .transition(DrawableTransitionOptions.withCrossFade())
             .error(R.drawable.meeting_room_placeholder)
-            .placeholder(R.drawable.meeting_room_placeholder)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(roundCornerSize)))
             .centerCrop()
             .into(holder.binding.roomImage)
