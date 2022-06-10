@@ -85,8 +85,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun registerObservers() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch { viewModel.homeScreen.collect { onUiUpdate(it) } }
-                launch { viewModel.events.collect { onEvent(it) } }
+                launch { viewModel.homeScreenUiState.collect { onUiUpdate(it) } }
+                launch { viewModel.homeScreenEvents.collect { onEvent(it) } }
             }
         }
     }

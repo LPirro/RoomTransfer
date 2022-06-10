@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            window.navigationBarColor = getColorFromAttr(com.google.android.material.R.attr.backgroundColor)
+            window.navigationBarColor =
+                getColorFromAttr(com.google.android.material.R.attr.backgroundColor)
         }
     }
 }

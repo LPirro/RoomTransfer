@@ -22,10 +22,10 @@ class HomeViewModel @Inject constructor(
     private val bookRoomUseCase: BookRoomUseCase
 ) : ViewModel(), HomeViewModelContract {
 
-    private val _homeScreen = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
-    val homeScreen: StateFlow<HomeUiState> = _homeScreen
-    private val _event = Channel<HomeEvents>(Channel.BUFFERED)
-    val events = _event.receiveAsFlow()
+    private val _homeScreenUiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
+    val homeScreenUiState: StateFlow<HomeUiState> = _homeScreenUiState
+    private val _homeScreenEvents = Channel<HomeEvents>(Channel.BUFFERED)
+    val homeScreenEvents = _homeScreenEvents.receiveAsFlow()
 
     init {
         getRooms()
@@ -37,11 +37,11 @@ class HomeViewModel @Inject constructor(
 
     override fun getRooms() = viewModelScope.launch {
         try {
-            getRoomsUseCase().collect { room ->
-                _homeScreen.value = HomeUiState.Success(room)
+            getRoomsUseCase().collect { rooms ->
+                _homeScreenUiState.value = HomeUiState.Success(rooms)
             }
         } catch (e: Exception) {
-            _homeScreen.value = HomeUiState.Error
+            _homeScreenUiState.value = HomeUiState.Error
         }
     }
 
@@ -49,10 +49,10 @@ class HomeViewModel @Inject constructor(
         try {
             bookRoomUseCase()
             val text = context.getString(R.string.booking_room_success)
-            _event.send(HomeEvents.ShowToast(text))
+            _homeScreenEvents.send(HomeEvents.ShowToast(text))
         } catch (e: Exception) {
             val text = context.getString(R.string.booking_room_error)
-            _event.send(HomeEvents.ShowToast(text))
+            _homeScreenEvents.send(HomeEvents.ShowToast(text))
         }
     }
 
