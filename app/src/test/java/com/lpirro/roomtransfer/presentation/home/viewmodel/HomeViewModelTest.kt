@@ -36,7 +36,7 @@ class HomeViewModelTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
-    val context: Application = ApplicationProvider.getApplicationContext()
+    private val context: Application = ApplicationProvider.getApplicationContext()
 
     private lateinit var viewModel: HomeViewModel
 
@@ -56,7 +56,7 @@ class HomeViewModelTest {
 
         viewModel.getRooms()
 
-        viewModel.homeScreen.test {
+        viewModel.homeScreenUiState.test {
             val emission = awaitItem() as HomeUiState.Success
             assertEquals(emission.rooms, mockHomeScreenData)
         }
@@ -67,7 +67,7 @@ class HomeViewModelTest {
         whenever(getRoomsUseCase()).thenReturn(null)
         viewModel.getRooms()
 
-        viewModel.homeScreen.test {
+        viewModel.homeScreenUiState.test {
             val emission = awaitItem()
             assertEquals(emission, HomeUiState.Error)
         }
@@ -76,7 +76,7 @@ class HomeViewModelTest {
     @Test
     fun bookRoomSuccessTest() = runTest {
         viewModel.bookRoom()
-        viewModel.events.test {
+        viewModel.homeScreenEvents.test {
             val emission = awaitItem()
             assertEquals(emission, HomeEvents.ShowToast("Room booked successfully"))
         }
@@ -87,7 +87,7 @@ class HomeViewModelTest {
         given(bookRoomUseCase()).willAnswer { throw UnknownHostException() }
 
         viewModel.bookRoom()
-        viewModel.events.test {
+        viewModel.homeScreenEvents.test {
             val emission = awaitItem()
             assertEquals(
                 emission,
